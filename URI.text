@@ -1,0 +1,15 @@
+//何かに書き込む。DB？ファイル？
+article{
+    id (int):
+    pieces_number (int):
+    title (string):
+    color (int):全色分
+}
+mypage{
+    bookmark_nuance ://idを登録
+    bookmark_color : //カラーコードを登録
+    save{
+        article{}
+    }
+    font:
+}
