@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.6
   font_awesome_flutter: ^10.7.0
   font_awesome_icon_class: ^0.0.6
+  mediaquery_sizer: ^1.1.1
 
 dev_dependencies:
   flutter_test:

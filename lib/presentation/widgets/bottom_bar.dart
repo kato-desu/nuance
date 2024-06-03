@@ -25,11 +25,10 @@ class _BottomBarState extends State<BottomBar> {
       
       body: _pageWidgets.elementAt(_currentIndex),
       bottomNavigationBar: BottomNavigationBar(
-        
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.desktop_mac), label: 'Random'),
+          BottomNavigationBarItem(icon: Icon(Icons.done,),label: 'Random'),
           BottomNavigationBarItem(icon: Icon(Icons.list), label: 'List'),
-          BottomNavigationBarItem(icon: Icon(Icons.usb_rounded), label: 'MyPage'),
+          BottomNavigationBarItem(icon: Icon(Icons.account_circle,), label: 'MyPage'),
         ],
         currentIndex: _currentIndex,
         fixedColor: Colors.blueAccent,
