@@ -1,14 +1,6 @@
-//import 'dart:nativewrappers/_internal/vm/lib/core_patch.dart';
-
-//import 'dart:nativewrappers/_internal/vm/lib/core_patch.dart';
-
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'dart:core';
-
-import 'package:flutter/widgets.dart';
-
-
 
 
 class RandomScreen extends StatefulWidget {
@@ -22,11 +14,11 @@ class _RandomScreenState extends State<RandomScreen> {
   var randomColor1 = const Color(0xffffffff);//ランダムな色
   var randomColor2 = const Color(0xffffffff);//ランダムな色
   var randomColor3 = const Color(0xffffffff);//ランダムな色
-  String color_code1 = '0xfffffffff';
+  String color_code1 = '0xfffffffff';//色コード
   String color_code2 = '0xfffffffff';
   String color_code3 = '0xfffffffff';
 
-  String toHex(Color color){
+  String toHex(Color color){//Colorを文字列の色コードに変換
   final colorStr = color.value.toRadixString(16).toString();
   if (colorStr.length == 8) {
     final hexcolor = colorStr.substring(2);
@@ -121,7 +113,6 @@ class _RandomScreenState extends State<RandomScreen> {
       ),
 
       floatingActionButton: FloatingActionButton(
-        
         onPressed: () {
           setState(() {
             randomColor1 = Color(//ランダムに色　 をセットする
@@ -136,7 +127,6 @@ class _RandomScreenState extends State<RandomScreen> {
               (Random().nextDouble() * 0xFFFFFF).toInt() << 0,
             ).withOpacity(1.0);
             color_code3 = toHex(randomColor3);
-
           });
         },
         child: Icon(Icons.add, color: Colors.black,),
