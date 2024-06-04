@@ -13,6 +13,7 @@ class _ListScreenState extends State<ListScreen> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;//画面横幅習得
     double screenHeight = MediaQuery.of(context).size.height;//画面縦幅習得
+    double color_tile_H = screenHeight * 0.05;
     
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 31, 31, 31),
@@ -27,17 +28,20 @@ class _ListScreenState extends State<ListScreen> {
                 onTap: () {
                   debugPrint('Card taped');
                 },
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
                 child: SizedBox(
                   //width: 300,
-                  width: screenWidth * 0.8,
+                  width: screenWidth * 0.9,
                   //height: screenHeight * 0.25,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children:  [
                       Text('ムーンロード',
                         style: TextStyle(fontSize: 30.0,
                         color: Colors.white)),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        //mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Card(
                             margin: EdgeInsets.only(top:screenHeight * 0.03, bottom:screenHeight * 0.03),
@@ -49,8 +53,8 @@ class _ListScreenState extends State<ListScreen> {
                               },
                               child: SizedBox(
                                 //width: 300,
-                                width: screenWidth * 0.42,
-                                height: screenHeight * 0.1,
+                                width: screenWidth * 0.49,
+                                height: color_tile_H,
                               ),
                             ),
                           ),
@@ -64,8 +68,8 @@ class _ListScreenState extends State<ListScreen> {
                               },
                               child: SizedBox(
                                 //width: 300,
-                                width: screenWidth * 0.15,
-                                height: screenHeight * 0.1,
+                                width: screenWidth * 0.175,
+                                height: color_tile_H,
                               ),
                             ),
                           ),
@@ -79,8 +83,8 @@ class _ListScreenState extends State<ListScreen> {
                               },
                               child: SizedBox(
                                 //width: 300,
-                                width: screenWidth * 0.03,
-                                height: screenHeight * 0.1,
+                                width: screenWidth * 0.035,
+                                height: color_tile_H,
                               ),
                             ),
                           ),
@@ -90,6 +94,7 @@ class _ListScreenState extends State<ListScreen> {
                   ),
                 ),
               ),
+            ),
             ),
           ],
         ),
