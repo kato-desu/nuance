@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../pages/random.dart';
+import '../pages/list.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({super.key});
@@ -13,7 +14,7 @@ class _BottomBarState extends State<BottomBar> {
   int _currentIndex = 0;
   final _pageWidgets = [
     RandomScreen(),
-    RandomScreen(),
+    ListScreen(),
     RandomScreen(),
   ];
 
