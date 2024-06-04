@@ -8,5 +8,6 @@
 <img src="https://img.shields.io/badge/-Figma-F24E1E.svg?logo=figma&style=plastic">
 
 # Suteru
-![スクリーンショット 2024-06-04 100027](https://github.com/katoYume/nuance/assets/169518538/99e81854-7309-4a4a-932a-2e978158c3df)
+![スクリーンショット 2024-06-04 100027](https://github.com/katoYume/nuance/assets/169518538/77174d65-2035-482e-801e-ff0ced05ac0b)
+
 
