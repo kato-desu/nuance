@@ -8,11 +8,14 @@ class ListCard extends StatefulWidget {
 }
 
 class _ListCardState extends State<ListCard> {
+  bool selected = false;//いいねボタンのステータス管理用
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width; //画面横幅習得
     double screenHeight = MediaQuery.of(context).size.height; //画面縦幅習得
     double color_tile_H = screenHeight * 0.05;
+
     return Card(
       color: const Color.fromARGB(255, 97, 97, 97),
       child: InkWell(
@@ -21,7 +24,7 @@ class _ListCardState extends State<ListCard> {
           debugPrint('Card taped');
         },
         child: Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: EdgeInsets.all(screenWidth * 0.05),
           child: SizedBox(
             width: screenWidth * 0.9,
             child: Column(
@@ -82,8 +85,23 @@ class _ListCardState extends State<ListCard> {
                         ),
                       ),
                     ),
-                Icon(Icons.favorite, color: Colors.black45, size: 20),
-
+                    Container(
+                      width: screenWidth * 0.15,
+                      //height: screenHeight * 0.1,
+                      child: Align(
+                        alignment: Alignment.centerRight,
+                        child: IconButton(
+                          icon: Icon(Icons.favorite, color: Colors.black45, size: 25),
+                          onPressed: () {// ボタンが押された際の動作を記述する
+                            setState(() {
+                              selected = !selected;
+                            });
+                          },
+                          isSelected: selected,
+                          selectedIcon: Icon(Icons.favorite, color: const Color.fromARGB(255, 255, 94, 148), size: 25),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ],
