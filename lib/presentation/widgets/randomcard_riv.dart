@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nuance/apprication/state/random_colors.dart';
 
-class RandomCard extends ConsumerWidget {
-  RandomCard({
+class RandomcardRiv extends ConsumerWidget {
+  RandomcardRiv({
     super.key,
   });
 
-  String color_code0 = '?????????';
-  String color_code1 = '?????????'; //色コード
-  String color_code2 = '?????????';
+  String color_code0 = 'fffffffff';
+  String color_code1 = 'fffffffff'; //色コード
+  String color_code2 = 'fffffffff';
   String toHex(Color color) {
     //Colorを文字列の色コードに変換
     final colorStr = color.value.toRadixString(16).toString();
@@ -32,12 +32,8 @@ class RandomCard extends ConsumerWidget {
     double screenWidth = MediaQuery.of(context).size.width; //画面横幅習得
     double screenHeight = MediaQuery.of(context).size.height; //画面縦幅習得
     List<Color> random_colors = ref.watch(randomcolorsNotifierProvider);
-    color_code0 = toHex(random_colors[0]);
-    color_code1 = toHex(random_colors[1]);
-    color_code2 = toHex(random_colors[2]);
 
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 31, 31, 31),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -113,6 +109,9 @@ class RandomCard extends ConsumerWidget {
         onPressed: () {
           final notifier = ref.read(randomcolorsNotifierProvider.notifier);
           notifier.updateState();
+          color_code0 = toHex(random_colors[0]);
+          color_code1 = toHex(random_colors[1]);
+          color_code2 = toHex(random_colors[2]);
         },
         child: Icon(
           Icons.add,

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import './presentation/widgets/bottom_bar.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  runApp(const MyApp());
+  //runApp(const MyApp());
+  const app = MyApp();
+  const scope = ProviderScope(child: app);
+  runApp(scope);
 }
 
 class MyApp extends StatefulWidget {
