@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'dart:core';
+import '../widgets/random_card.dart';
 
 
 class RandomScreen extends StatefulWidget {
@@ -11,6 +12,7 @@ class RandomScreen extends StatefulWidget {
 }
 
 class _RandomScreenState extends State<RandomScreen> {
+
   var randomColor1 = const Color(0xffffffff);//ランダムな色
   var randomColor2 = const Color(0xffffffff);//ランダムな色
   var randomColor3 = const Color(0xffffffff);//ランダムな色
@@ -33,6 +35,7 @@ class _RandomScreenState extends State<RandomScreen> {
   }
 }
 
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;//画面横幅習得
@@ -40,7 +43,9 @@ class _RandomScreenState extends State<RandomScreen> {
 
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 31, 31, 31),
-      body: Center(
+      body: RandomCard(),
+      /*
+      Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
@@ -111,6 +116,7 @@ class _RandomScreenState extends State<RandomScreen> {
           ],
         ),
       ),
+      */
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
