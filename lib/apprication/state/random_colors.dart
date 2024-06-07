@@ -13,18 +13,13 @@ class RandomcolorsNotifier extends _$RandomcolorsNotifier {
 
   // データを変更する関数
   void updateState() {
-
-    Color newState0 = Color(//ランダムに色　 をセットする
+    state = List<Color>.empty(growable: true);
+    int i;
+    for(i=0;i<3;i++){//ランダムに色をセットする * 3回
+      state.add(Color(
               (Random().nextDouble() * 0xFFFFFF).toInt() << 0,
-            ).withOpacity(1.0);
-    Color newState1 = Color(//ランダムに色　 をセットする
-              (Random().nextDouble() * 0xFFFFFF).toInt() << 0,
-            ).withOpacity(1.0);
-    Color newState2 = Color(//ランダムに色　 をセットする
-              (Random().nextDouble() * 0xFFFFFF).toInt() << 0,
-            ).withOpacity(1.0);
-    state = [newState0,newState1,newState2];
-
+            ).withOpacity(1.0));
+    }
   }
 
 }
