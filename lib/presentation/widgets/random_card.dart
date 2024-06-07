@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:nuance/apprication/state/random_colors.dart';
 
-class RandomCard extends ConsumerWidget {
-  RandomCard({
-    super.key,
-  });
+class RandomCard extends StatefulWidget {
+ // RandomCard({super.key, required this.random_color, required this.h});
+  final Color random_color; //受け取る変数の定義
+  final double h;
+  RandomCard(this.random_color,this.h);//コンストラクタの定義
 
-  String color_code0 = '?????????';
-  String color_code1 = '?????????'; //色コード
-  String color_code2 = '?????????';
-  String toHex(Color color) {
-    //Colorを文字列の色コードに変換
+  @override
+  State<RandomCard> createState() => _RandomCardState();
+}
+
+class _RandomCardState extends State<RandomCard> {
+  String toHex(Color color) {    //Colorを文字列の色コードに変換
     final colorStr = color.value.toRadixString(16).toString();
     if (colorStr.length == 8) {
       final hexcolor = colorStr.substring(2);
       final transparent = colorStr.substring(0, 2);
       if (transparent == "ff") {
-        return "#" + hexcolor;
+        return "#$hexcolor";
       } else {
         return "#" + hexcolor + transparent;
       }
@@ -27,98 +27,23 @@ class RandomCard extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    // ここで ref.watch など
+  Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width; //画面横幅習得
     double screenHeight = MediaQuery.of(context).size.height; //画面縦幅習得
-    List<Color> random_colors = ref.watch(randomcolorsNotifierProvider);
-    color_code0 = toHex(random_colors[0]);
-    color_code1 = toHex(random_colors[1]);
-    color_code2 = toHex(random_colors[2]);
-
-    return Scaffold(
-      backgroundColor: Color.fromARGB(255, 31, 31, 31),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Card(
-              color: random_colors[0],
-              child: InkWell(
-                splashColor:
-                    const Color.fromARGB(255, 255, 255, 255).withAlpha(30),
-                onTap: () {
-                  debugPrint('Card taped');
-                },
-                child: SizedBox(
-                  //width: 300,
-                  width: screenWidth * 0.7,
-                  height: screenHeight * 0.42,
-                  child: Column(
-                    children: [
-                      Text('$color_code0',
-                          style:
-                              TextStyle(fontSize: 30.0, color: Colors.white)),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Card(
-              color: random_colors[1],
-              child: InkWell(
-                splashColor:
-                    const Color.fromARGB(255, 255, 255, 255).withAlpha(30),
-                onTap: () {
-                  debugPrint('Card taped');
-                },
-                child: SizedBox(
-                  width: screenWidth * 0.7,
-                  height: screenHeight * 0.15,
-                  child: Column(
-                    children: [
-                      Text('$color_code1',
-                          style:
-                              TextStyle(fontSize: 30.0, color: Colors.white)),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Card(
-              color: random_colors[2],
-              child: InkWell(
-                splashColor:
-                    const Color.fromARGB(255, 255, 255, 255).withAlpha(30),
-                onTap: () {
-                  debugPrint('Card taped');
-                },
-                child: SizedBox(
-                  width: screenWidth * 0.7,
-                  height: screenHeight * 0.08,
-                  child: Column(
-                    children: [
-                      Text('$color_code2',
-                          style:
-                              TextStyle(fontSize: 30.0, color: Colors.white)),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          final notifier = ref.read(randomcolorsNotifierProvider.notifier);
-          notifier.updateState();
+    String random_code = toHex(widget.random_color);
+    return Card(
+      color: widget.random_color, //ランダムでえらばれた色を指定
+      child: InkWell(
+        splashColor: const Color.fromARGB(255, 255, 255, 255).withAlpha(30),
+        onTap: () {
+          debugPrint('Card taped');
         },
-        child: Icon(
-          Icons.add,
-          color: Colors.black,
+        child: SizedBox(
+          width: screenWidth * 0.7,
+          height: screenHeight * widget.h, //高さを各々指定
+          child: Text('$random_code', //各々の色コードを指定
+              style: TextStyle(fontSize: 30.0, color: Colors.white)),
         ),
-        backgroundColor: Colors.white,
       ),
     );
   }
