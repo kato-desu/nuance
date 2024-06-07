@@ -10,6 +10,7 @@ class RandomCard extends ConsumerWidget {
   String color_code0 = '?????????';
   String color_code1 = '?????????'; //色コード
   String color_code2 = '?????????';
+
   String toHex(Color color) {
     //Colorを文字列の色コードに変換
     final colorStr = color.value.toRadixString(16).toString();
@@ -54,13 +55,8 @@ class RandomCard extends ConsumerWidget {
                   //width: 300,
                   width: screenWidth * 0.7,
                   height: screenHeight * 0.42,
-                  child: Column(
-                    children: [
-                      Text('$color_code0',
-                          style:
-                              TextStyle(fontSize: 30.0, color: Colors.white)),
-                    ],
-                  ),
+                  child: Text('$color_code0',
+                      style: TextStyle(fontSize: 30.0, color: Colors.white)),
                 ),
               ),
             ),
@@ -75,18 +71,13 @@ class RandomCard extends ConsumerWidget {
                 child: SizedBox(
                   width: screenWidth * 0.7,
                   height: screenHeight * 0.15,
-                  child: Column(
-                    children: [
-                      Text('$color_code1',
-                          style:
-                              TextStyle(fontSize: 30.0, color: Colors.white)),
-                    ],
-                  ),
+                  child: Text('$color_code1',
+                      style: TextStyle(fontSize: 30.0, color: Colors.white)),
                 ),
               ),
             ),
             Card(
-              color: random_colors[2],
+              color: random_colors[2],//ランダムでえらばれた色を指定
               child: InkWell(
                 splashColor:
                     const Color.fromARGB(255, 255, 255, 255).withAlpha(30),
@@ -95,14 +86,9 @@ class RandomCard extends ConsumerWidget {
                 },
                 child: SizedBox(
                   width: screenWidth * 0.7,
-                  height: screenHeight * 0.08,
-                  child: Column(
-                    children: [
-                      Text('$color_code2',
-                          style:
-                              TextStyle(fontSize: 30.0, color: Colors.white)),
-                    ],
-                  ),
+                  height: screenHeight * 0.08,//高さを各々指定
+                  child: Text('$color_code2',//各々の色コードを指定
+                      style: TextStyle(fontSize: 30.0, color: Colors.white)),
                 ),
               ),
             ),
