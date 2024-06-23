@@ -21,13 +21,13 @@ class fixed_colorNotifier extends StateNotifier<List<bool>> {
     return [OPEN, OPEN, OPEN];
   }
 
-  void updateState() {
-    int id = 1;
+  void updateState(int id) {
+    //int id = 1;
   // void updateState(int id) {
     // 変更前のデータ
     final oldState = state;
     // 変更後のデータ
-    oldState[id] = false;
+    oldState[id] = !oldState[id];
     // oldState[id] = !oldState[id];
     final newState = oldState;
     // データを上書き
