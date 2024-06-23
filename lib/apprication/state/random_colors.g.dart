@@ -7,7 +7,7 @@ part of 'random_colors.dart';
 // **************************************************************************
 
 String _$randomcolorsNotifierHash() =>
-    r'b236d631b4cfd0b6a8a797cf1b8ffaaf5a614444';
+    r'b92a89121d7dfd55778273c1e98d48b7b5c97c50';
 
 /// See also [RandomcolorsNotifier].
 @ProviderFor(RandomcolorsNotifier)

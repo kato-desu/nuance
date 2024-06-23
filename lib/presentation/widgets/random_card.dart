@@ -1,26 +1,59 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../domain/features/tohex.dart';
+import '../../apprication/state/fixed_color.dart';
 
-class RandomCard extends StatefulWidget {
+
+//色固定の状態管理用プロバイダー
+// final fixed_colorNotifierProvider = Provider.family<fixed_colorNotifier, int>((ref, id){
+final fixed_colorNotifierProvider = StateNotifierProvider<fixed_colorNotifier, List<bool>>((ref){
+  return fixed_colorNotifier([false,false,false]);
+});
+
+//class RandomCard extends StatefulWidget {
+// ignore: must_be_immutable
+class RandomCard extends ConsumerWidget {
   // RandomCard({super.key, required this.random_color, required this.h});
   final Color random_color; //受け取る変数の定義
   final double h;
-  RandomCard(this.random_color, this.h); //コンストラクタの定義
+  RandomCard(this.random_color, this.h);
+
+
+  /*
+  //@override
+  State<RandomCard> createState() => _RandomCardState();
 
   @override
-  State<RandomCard> createState() => _RandomCardState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    // TODO: implement build
+    throw UnimplementedError();
+  }
+*/
 
-class _RandomCardState extends State<RandomCard> {
+
+//class _RandomCardState extends State<RandomCard> {
   bool selected = false; //色固定ボタンのステータス管理用
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     double screenWidth = MediaQuery.of(context).size.width; //画面横幅習得
     double screenHeight = MediaQuery.of(context).size.height; //画面縦幅習得
-    String random_code = toHex(widget.random_color);
+    //String random_code = toHex(widget.random_color);
+    String random_code = toHex(this.random_color);
+
+    int card_num = 1;
+    if (this.h == 0.42)//カードの上からの順番を記述
+      card_num = 1;
+    else if (this.h == 0.15)
+      card_num = 2;
+    else
+      card_num = 3;
+
+
+  
     return Card(
-      color: widget.random_color, //ランダムでえらばれた色を指定
+      // color: widget.random_color, //ランダムでえらばれた色を指定
+      color: this.random_color, //ランダムでえらばれた色を指定
       child: InkWell(
         splashColor: const Color.fromARGB(255, 255, 255, 255).withAlpha(30),
         onTap: () {
@@ -28,7 +61,8 @@ class _RandomCardState extends State<RandomCard> {
         },
         child: SizedBox(
           width: screenWidth * 0.7,
-          height: screenHeight * widget.h, //高さを各々指定
+          height: screenHeight * this.h, //高さを各々指定
+          // height: screenHeight * widget.h, //高さを各々指定
           child: Row(children: <Widget>[
             Text('$random_code', //各々の色コードを指定
                 style: TextStyle(fontSize: 30.0, color: Colors.white)),
@@ -36,11 +70,16 @@ class _RandomCardState extends State<RandomCard> {
             IconButton(
               icon: Icon(Icons.lock_open,
                   color: Color.fromARGB(137, 0, 0, 0), size: 25),
-              onPressed: () {
-                // ボタンが押された際の動作を記述する
-                setState(() {
+              onPressed: () {// ボタンが押された際の動作を記述する
+                // setState(() {
                   selected = !selected;
-                });
+                  final notifier = ref.read(fixed_colorNotifierProvider.notifier);
+                  // final notifier = ref.read(fixed_colorNotifierProvider.notifier);
+                  notifier.updateState();
+                  // notifier.updateState(card_num);
+                  // notifier.updateState(widget.h);
+                // }
+                // );
               },
               isSelected: selected,
               selectedIcon: Icon(Icons.lock,
