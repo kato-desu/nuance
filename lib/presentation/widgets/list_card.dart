@@ -87,7 +87,6 @@ class _ListCardState extends State<ListCard> {
                     ),
                     Container(
                       width: screenWidth * 0.15,
-                      //height: screenHeight * 0.1,
                       child: Align(
                         alignment: Alignment.centerRight,
                         child: IconButton(
