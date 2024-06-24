@@ -12,12 +12,6 @@ class RandomCard extends ConsumerStatefulWidget {
 }
 
 class _RandomCardState extends ConsumerState<RandomCard> {
-  //色固定の状態管理用プロバイダー
-  final fixed_colorNotifierProvider =
-      StateNotifierProvider<fixed_colorNotifier, List<bool>>((ref) {
-    return fixed_colorNotifier([false, false, false]);
-  });
-
   bool selected = false; //色固定ボタンのステータス管理用
 
   @override
@@ -33,7 +27,6 @@ class _RandomCardState extends ConsumerState<RandomCard> {
       card_num = 1;
     else
       card_num = 2;
-
 
     return Card(
       color: widget.random_color, //ランダムでえらばれた色を指定
@@ -61,7 +54,6 @@ class _RandomCardState extends ConsumerState<RandomCard> {
                   List<bool> fixed_colors =
                       ref.watch(fixed_colorNotifierProvider);
                   selected = fixed_colors[card_num];
-                  print('$selected');
                 });
               },
               isSelected: selected,

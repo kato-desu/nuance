@@ -1,15 +1,15 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+//色固定の状態管理用プロバイダー
+final fixed_colorNotifierProvider =
+    StateNotifierProvider<fixed_colorNotifier, List<bool>>((ref) {
+  return fixed_colorNotifier([false, false, false]);
+});
+
 class fixed_colorNotifier extends StateNotifier<List<bool>> {
   bool OPEN = false;
   bool LOCK = true;
-
-  fixed_colorNotifier(super.state);
-
-  List<bool> build() {
-    //初期値？
-    return [OPEN, OPEN, OPEN];
-  }
+  fixed_colorNotifier(List<bool> notifier_fix) : super(notifier_fix);
 
   void updateState(int id) {
     // 変更前のデータ

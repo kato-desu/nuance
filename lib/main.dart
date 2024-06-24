@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import './presentation/widgets/bottom_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+
 void main() {
   //runApp(const MyApp());
   const app = MyApp();

@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nuance/apprication/state/random_colors.dart';
 import '../widgets/random_card.dart';
+import '../../apprication/state/fixed_color.dart';
 
-class RandomScreen extends ConsumerWidget {
-  RandomScreen({
+class RandomScreen extends ConsumerStatefulWidget {
+  const RandomScreen({
     super.key,
   });
-
-
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<RandomScreen> createState() => _RandomScreenState();
+}
+
+class _RandomScreenState extends ConsumerState<RandomScreen> {
+  @override
+  Widget build(BuildContext context) {
     // ここで ref.watch など
     List<Color> random_colors =
         ref.watch(randomcolorsNotifierProvider); //ランダム色取得
@@ -29,8 +33,11 @@ class RandomScreen extends ConsumerWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          final notifier = ref.read(randomcolorsNotifierProvider.notifier);
-          notifier.updateState();
+          setState(() {
+            List<bool> notifierFix = ref.watch(fixed_colorNotifierProvider);
+            final notifier = ref.read(randomcolorsNotifierProvider.notifier);
+            notifier.updateState(notifierFix);
+          });
         },
         child: Icon(
           Icons.add,
